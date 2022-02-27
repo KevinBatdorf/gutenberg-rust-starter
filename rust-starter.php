@@ -15,9 +15,4 @@
 
 add_action('init', function () {
     register_block_type(__DIR__ . '/build');
-    add_filter('mime_types', function ($mimes) {
-        return array_merge($mimes, [
-            'wasm' => 'application/wasm',
-        ]);
-    });
 });
