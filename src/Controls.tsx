@@ -1,29 +1,35 @@
-import { PanelBody, BaseControl } from '@wordpress/components'
+import { PanelBody, BaseControl, Button } from '@wordpress/components'
 import { __ } from '@wordpress/i18n'
 import { InspectorControls } from '@wordpress/block-editor'
-import './styles/editor.scss'
 import { Attributes } from '.'
 import { useState, useEffect } from '@wordpress/element'
+import './styles/editor.scss'
+import { useServer } from './hooks/useServer'
 
 interface ControlProps {
-    attributes: Attributes
-    setAttributes?: (attributes: Attributes) => void
+    attributes?: Attributes
+    setAttributes: (attributes: Attributes) => void
 }
 
-export const Controls = ({ attributes, setAttributes }: ControlProps) => {
-    const [text, setText] = useState('')
-    const handleClick = () => {}
+export const Controls = ({ setAttributes }: ControlProps) => {
+    const server = useServer()
+    const setQuote = () => {
+        if (server?.hasOwnProperty('get_text')) {
+            setAttributes({ text: server.get_text() })
+        }
+    }
+
     useEffect(() => {
-        setText(attributes.text)
-    }, [attributes.text])
+        setQuote()
+    }, [server])
 
     return (
         <InspectorControls>
             <PanelBody title={__('Settings', 'rust-starter')}>
-                <BaseControl id="ok" label={__('Get new text')}>
-                    <button onClick={handleClick}>
+                <BaseControl id="get-text">
+                    <Button isPrimary onClick={setQuote}>
                         {__('Get new text', 'rust-starter')}
-                    </button>
+                    </Button>
                 </BaseControl>
             </PanelBody>
         </InspectorControls>

@@ -13,7 +13,11 @@
  * @package           kevinbatdorf
  */
 
-function kevinbatdorf_rust_starter_block_init() {
-	register_block_type( __DIR__ . '/build' );
-}
-add_action( 'init', 'kevinbatdorf_rust_starter_block_init' );
+add_action('init', function () {
+    register_block_type(__DIR__ . '/build');
+    add_filter('mime_types', function ($mimes) {
+        return array_merge($mimes, [
+            'wasm' => 'application/wasm',
+        ]);
+    });
+});

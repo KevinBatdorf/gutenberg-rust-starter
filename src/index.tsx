@@ -1,6 +1,6 @@
 import { registerBlockType } from '@wordpress/blocks'
 import { useBlockProps as blockProps } from '@wordpress/block-editor'
-import { __ } from '@wordpress/i18n/build-types'
+import { __ } from '@wordpress/i18n'
 import { TheBlock } from './TheBlock'
 import { Controls } from './Controls'
 import blockConfig from './block.json'
