@@ -7,11 +7,11 @@ import './styles/editor.scss'
 import { useServer } from './hooks/useServer'
 
 interface ControlProps {
-    attributes?: Attributes
+    attributes: Attributes
     setAttributes: (attributes: Attributes) => void
 }
 
-export const Controls = ({ setAttributes }: ControlProps) => {
+export const Controls = ({ attributes, setAttributes }: ControlProps) => {
     const server = useServer()
     const setQuote = () => {
         if (server?.hasOwnProperty('get_text')) {
@@ -20,7 +20,9 @@ export const Controls = ({ setAttributes }: ControlProps) => {
     }
 
     useEffect(() => {
-        setQuote()
+        if (attributes.text === 'Loading...') {
+            setQuote()
+        }
     }, [server])
 
     return (
