@@ -1,0 +1,5 @@
+/.wordpress-org
+/.git
+/.github
+/node_modules
+/assets
