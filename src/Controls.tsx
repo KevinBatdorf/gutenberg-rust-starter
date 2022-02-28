@@ -1,10 +1,10 @@
 import { PanelBody, BaseControl, Button } from '@wordpress/components'
 import { __ } from '@wordpress/i18n'
 import { InspectorControls } from '@wordpress/block-editor'
-import { Attributes } from '.'
-import { useState, useEffect } from '@wordpress/element'
-import './styles/editor.scss'
+import { useEffect } from '@wordpress/element'
 import { useServer } from './hooks/useServer'
+import './styles/editor.scss'
+import type { Attributes } from '.'
 
 interface ControlProps {
     attributes: Attributes
