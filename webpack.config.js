@@ -6,13 +6,11 @@ module.exports = {
     ...defaultConfig,
     plugins: [
         ...defaultConfig.plugins,
-        ...[
-            new WasmPackPlugin({
-                crateDirectory: path.resolve(__dirname, '.'),
-                extraArgs: '--no-typescript --target web',
-                watchDirectories: [path.resolve(__dirname, 'server')],
-            }),
-        ],
+        new WasmPackPlugin({
+            crateDirectory: path.resolve(__dirname, '.'),
+            extraArgs: '--no-typescript --target web',
+            watchDirectories: [path.resolve(__dirname, 'server')],
+        }),
     ],
     experiments: {
         asyncWebAssembly: true,
