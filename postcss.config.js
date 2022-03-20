@@ -1,6 +1,8 @@
 const tailwind = require('./tailwind.config')
 
 module.exports = ({ mode, file }) => ({
+    ident: 'postcss',
+    sourceMap: mode !== 'production',
     plugins: [
         require('postcss-import'),
         require('tailwindcss/nesting'),
@@ -31,7 +33,19 @@ module.exports = ({ mode, file }) => ({
                     }
                 }
             }),
-        require('autoprefixer'),
-        mode === 'production' ? require('cssnano') : () => {},
+        // See: https://github.com/WordPress/gutenberg/blob/trunk/packages/postcss-plugins-preset/lib/index.js
+        require('autoprefixer')({ grid: true }),
+        mode === 'production' &&
+            // See: https://github.com/WordPress/gutenberg/blob/trunk/packages/scripts/config/webpack.config.js#L68
+            require('cssnano')({
+                preset: [
+                    'default',
+                    {
+                        discardComments: {
+                            removeAll: true,
+                        },
+                    },
+                ],
+            }),
     ],
 })
