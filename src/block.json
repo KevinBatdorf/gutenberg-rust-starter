@@ -16,7 +16,7 @@
         "html": false
     },
     "textdomain": "rust-starter",
-    "editorScript": "file:./index.tsx",
-    "editorStyle": "file:./editor/editor.css",
-    "style": "file:./front/style.css"
+    "editorScript": "file:../build/index.js",
+    "editorStyle": "file:../build/index.css",
+    "style": "file:../build/style-index.css"
 }

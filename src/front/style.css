@@ -2,20 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-.kevinbatdorf-rust-starter {
+.rust-starter {
     --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
     --tw-ring-offset-width: 0px;
     --tw-ring-offset-color: transparent;
     --tw-ring-color: var(--wp-admin-theme-color);
 }
-.kevinbatdorf-rust-starter *,
-.kevinbatdorf-rust-starter *:after,
-.kevinbatdorf-rust-starter *:before {
+.rust-starter *,
+.rust-starter *:after,
+.rust-starter *:before {
     box-sizing: border-box;
     border: 0 solid #e5e7eb;
 }
-.wp-block-kevinbatdorf-rust-starter {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
-}
+/* Add more styles here specific to the block/frontend */

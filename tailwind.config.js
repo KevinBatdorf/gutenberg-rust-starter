@@ -1,6 +1,7 @@
+// See postcss.config.js for more parsing options.
 module.exports = {
-    // See postcss.config.js for more parsing options.
-    important: '.kevinbatdorf-rust-starter',
+    // Tnis should match the namespace you use in your css styles.
+    important: '.rust-starter',
     theme: {
         screens: {
             xxs: '280px',
