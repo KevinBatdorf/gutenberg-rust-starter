@@ -1,10 +1,9 @@
 import { registerBlockType } from '@wordpress/blocks'
 import { useBlockProps as blockProps } from '@wordpress/block-editor'
 import { __ } from '@wordpress/i18n'
-import { TheBlock } from './TheBlock'
-import { Controls } from './Controls'
+import { TheBlock } from './front/TheBlock'
+import { Controls } from './editor/Controls'
 import blockConfig from './block.json'
-import './styles/style.scss'
 
 export type Attributes = {
     text: string

@@ -2,9 +2,9 @@ import { PanelBody, BaseControl, Button } from '@wordpress/components'
 import { __ } from '@wordpress/i18n'
 import { InspectorControls } from '@wordpress/block-editor'
 import { useEffect } from '@wordpress/element'
-import { useServer } from './hooks/useServer'
-import './styles/editor.scss'
-import type { Attributes } from '.'
+import { useServer } from '../hooks/useServer'
+import type { Attributes } from '..'
+import './editor.css'
 
 interface ControlProps {
     attributes: Attributes
@@ -29,7 +29,11 @@ export const Controls = ({ attributes, setAttributes }: ControlProps) => {
         <InspectorControls>
             <PanelBody title={__('Settings', 'rust-starter')}>
                 <BaseControl id="get-text">
-                    <Button isPrimary onClick={setQuote}>
+                    <Button
+                        isPrimary
+                        onClick={setQuote}
+                        className="bg-red-500 p-2"
+                    >
                         {__('Get new text', 'rust-starter')}
                     </Button>
                 </BaseControl>
