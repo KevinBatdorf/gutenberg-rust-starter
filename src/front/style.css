@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .rust-starter {
     --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
     --tw-ring-offset-width: 0px;
@@ -14,4 +10,7 @@
     box-sizing: border-box;
     border: 0 solid #e5e7eb;
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /* Add more styles here specific to the block/frontend */
