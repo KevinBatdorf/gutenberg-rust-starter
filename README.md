@@ -24,6 +24,6 @@ This starter repo builds on top of Tailwind in a few useful ways:
 - Removes the preflight and global Tailwind styles/animation presets so that there isn't a conflict with other blocks, plugins, etc.
 - On frontend styles, padding and margins will only be applied if the block doesn't have inline styling (e.g. `.p-4:not([style*="padding"])`). This lets you define a default while letting users override these values. Open an issue for more info.
 
-Read more about TypeScript: https://tailwindcss.com/
+Read more about Tailwind CSS: https://tailwindcss.com/
 
 ### Cypress e2e testing - coming soon!
