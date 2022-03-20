@@ -10,6 +10,9 @@ module.exports = ({ mode, file }) => ({
             content: file.endsWith('editor.css')
                 ? ['./src/editor/*.{ts,tsx}']
                 : ['./src/front/*.{ts,tsx}'],
+            important:
+                tailwind.important +
+                (file.endsWith('editor.css') ? '-editor' : ''),
         }),
         (css) =>
             css.walkRules((rule) => {

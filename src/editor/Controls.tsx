@@ -29,12 +29,12 @@ export const Controls = ({ attributes, setAttributes }: ControlProps) => {
         <InspectorControls>
             <PanelBody title={__('Settings', 'rust-starter')}>
                 <BaseControl id="get-text">
-                    {/* To use TW just wrap the class with your namespace as //
-                    defined in tailwind.config.js file */}
-                    <div className="rust-starter">
+                    {/* To use TW just wrap the class with your namespace as
+                    defined in tailwind.config.js file, but with -editor appended */}
+                    <div className="rust-starter-editor">
                         <div className="p-4 bg-gray-200 mb-4">
-                            This area built with Tailwind CSS. The button below
-                            will use Rust to process the request.
+                            This area is styled with Tailwind CSS. The button
+                            below will use Rust to process the request.
                         </div>
                         <Button isPrimary onClick={setQuote}>
                             {__('Get new text', 'rust-starter')}
