@@ -39,6 +39,7 @@ if (['rust', 'r'].includes(command)) {
     deleteFile(`${__rootDir}/Cargo.lock`)
     deleteFile(`${__rootDir}/webpack.config.js`)
     deleteFile(`${__rootDir}/server`)
+    deleteFile(`${__rootDir}/pkg`)
     console.log('Removed Rust files.')
     process.exit(0)
 }
