@@ -1,6 +1,7 @@
 import fs from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
+import { deleteFile, loadFileData } from './utils'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -15,20 +16,19 @@ if (!command) {
 console.log(`Running command: ${command}`)
 
 if (['tw', 'tailwind'].includes(command)) {
-    fs.unlinkSync('./tailwind.config.js')
-    fs.unlinkSync('./postcss.config.js')
-    const editorData = fs
-        .readFileSync(`${__rootDir}/src/editor/editor.css`, {
-            encoding: 'utf8',
-        })
-        .replace(/(@tailwind|--tw).*\n/g, '')
-    fs.writeFileSync(`${__rootDir}/src/editor/editor.css`, editorData)
-    const frontData = fs
-        .readFileSync(`${__rootDir}/src/front/style.css`, { encoding: 'utf8' })
-        .replace(/(@tailwind|--tw).*\n/g, '')
-    fs.writeFileSync(`${__rootDir}/src/front/style.css`, frontData)
-    console.log(
-        'Removed Tailwind files and config. Make sure to update your stylesheets accordingly.',
+    deleteFile('./tailwind.config.js')
+    deleteFile('./postcss.config.js')
+    const editorCss = `${__rootDir}/src/editor/editor.css`
+    const frontCss = `${__rootDir}/src/front/style.css`
+    const editorData = loadFileData(editorCss).replace(
+        /(@tailwind|--tw).*\n/g,
+        '',
     )
+    fs.writeFileSync(editorCss, editorData)
+    const frontData = loadFileData(frontCss)
+        .replace(/\/* --tw-ring-color: you-may-want-to-update-this; *\/\n/, '')
+        .replace(/(@tailwind|--tw).*\n/g, '')
+    fs.writeFileSync(frontCss, frontData)
+    console.log('Removed Tailwind files and config.')
     process.exit(0)
 }
