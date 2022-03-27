@@ -40,6 +40,15 @@ if (['rust', 'r'].includes(command)) {
     deleteFile(`${__rootDir}/webpack.config.js`)
     deleteFile(`${__rootDir}/server`)
     deleteFile(`${__rootDir}/pkg`)
+    deleteFile(`${__rootDir}/src/hooks/useServer.ts`)
+    const controlsFile = `${__rootDir}/src/editor/Controls.tsx`
+    const controlData = loadFileData(controlsFile)
+        .replace(/(import { useServer).*\n/g, '')
+        .replace(
+            /(const server = ).*\n/g,
+            'const server = { get_text() { return "Rust was removed" } }\n',
+        )
+    fs.writeFileSync(controlsFile, controlData)
     console.log('Removed Rust files.')
     process.exit(0)
 }
