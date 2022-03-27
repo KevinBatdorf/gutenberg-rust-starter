@@ -1,8 +1,6 @@
 import fs from 'fs'
 export const deleteFile = (filePath) => {
-    if (fs.existsSync(filePath)) {
-        fs.unlinkSync(filePath)
-    }
+    fs.rmSync(filePath, { recursive: true, force: true })
 }
 export const loadFileData = (filePath) => {
     if (fs.existsSync(filePath)) {

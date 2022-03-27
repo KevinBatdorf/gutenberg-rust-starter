@@ -30,6 +30,15 @@ if (['tw', 'tailwind'].includes(command)) {
         '',
     )
     fs.writeFileSync(frontCss, frontData)
-    console.log('Removed Tailwind files and config.')
+    console.log('Removed Tailwind files.')
+    process.exit(0)
+}
+
+if (['rust', 'r'].includes(command)) {
+    deleteFile(`${__rootDir}/Cargo.toml`)
+    deleteFile(`${__rootDir}/Cargo.lock`)
+    deleteFile(`${__rootDir}/webpack.config.js`)
+    deleteFile(`${__rootDir}/server`)
+    console.log('Removed Rust files.')
     process.exit(0)
 }
