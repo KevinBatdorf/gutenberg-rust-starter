@@ -27,3 +27,8 @@ This starter repo builds on top of Tailwind in a few useful ways:
 Read more about Tailwind CSS: https://tailwindcss.com/
 
 ### Cypress e2e testing - coming soon!
+
+### Eject Features
+To remove some features, run the following:
+- To remove Tailwind, run `npm run eject tailwind`
+- To remove Rust, run `npm run eject rust`
