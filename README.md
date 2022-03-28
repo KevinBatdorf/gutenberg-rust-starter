@@ -5,7 +5,15 @@ This is a minimum block plugin template to rapidly get started building WP block
 - Follow me on Twitter: https://twitter.com/kevinbatdorf
 - Sponsor this package: https://github.com/sponsors/KevinBatdorf/
 
+### Getting Started
+- Run `npm install` to install necessary packages
+- Run `npm run rename <text-domain> <label>` to rename from rust-starter.
+- Run `npm run start` to start the dev server
+
 ## Features
+This is an opinionated starter template that is designed to fit my personal workflow. However, I've added a small script to clean up and remove some features.
+- To remove Tailwind, run `npm run eject tailwind`
+- To remove Rust, run `npm run eject rust`
 ### Rust
 Rust is a systems programming language with a strong type system, memory safety, and great documentation. Beyond that it's fun to write and has a great community of helpful developers. Rust also compiles into WebAssembly, letting us utilize the power of systems programming on the web.
 
@@ -27,8 +35,3 @@ This starter repo builds on top of Tailwind in a few useful ways:
 Read more about Tailwind CSS: https://tailwindcss.com/
 
 ### Cypress e2e testing - coming soon!
-
-### Eject Features
-To remove some features, run the following:
-- To remove Tailwind, run `npm run eject tailwind`
-- To remove Rust, run `npm run eject rust`

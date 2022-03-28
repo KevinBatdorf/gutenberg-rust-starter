@@ -1,11 +1,5 @@
 import fs from 'fs'
-import { fileURLToPath } from 'url'
-import { dirname } from 'path'
-import { deleteFile, loadFileData } from './utils.mjs'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-const __rootDir = dirname(__dirname)
+import { deleteFile, loadFileData, __rootDir } from './utils.mjs'
 
 const command = process.argv[2]
 if (!command) {
@@ -13,7 +7,7 @@ if (!command) {
     console.error('Usage: npm run eject <command>')
     process.exit(1)
 }
-console.log(`Running command: ${command}`)
+console.log(`Ejecting feature: ${command}`)
 
 if (['tw', 'tailwind'].includes(command)) {
     deleteFile('./tailwind.config.js')
