@@ -7,7 +7,7 @@ This is a minimum block plugin template to rapidly get started building WP block
 
 ### Getting Started
 - Run `npm install` to install necessary packages
-- Run `npm run rename <text-domain> <label>` to rename the script files.
+- Run `npm run rename <text-domain> <label>` to rename from rust-starter.
 - Run `npm run start` to start the dev server
 
 ## Features
