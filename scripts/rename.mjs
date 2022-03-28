@@ -1,4 +1,5 @@
 import glob from 'glob'
+import fs from 'fs'
 import replace from 'replace-in-file'
 import { __rootDir } from './utils.mjs'
 
@@ -11,6 +12,8 @@ if (!textDomain) {
 }
 console.log(`Renaming to: ${textDomain} (${label})`)
 
+fs.renameSync(`${__rootDir}/rust-starter.php`, `${__rootDir}/${textDomain}.php`)
+
 const ignore = [
     `${__rootDir}/node_modules/**/*`,
     `${__rootDir}/scripts/**/*`,
@@ -20,10 +23,12 @@ const ignore = [
 ]
 glob(`${__rootDir}/**/*.*`, { ignore }, (err, files) => {
     if (err) throw err
-
     files.forEach((item) => {
-        replace.sync({ from: 'rust-starter', to: textDomain, files: item })
-        replace.sync({ from: 'Rust Starter', to: label, files: item })
+        const options = { files: item }
+        replace.sync({ from: /rust-starter/g, to: textDomain, ...options })
+        replace.sync({ from: /Rust Starter/g, to: label, ...options })
     })
-    console.log('Finished.')
 })
+
+console.log('Finished.')
+process.exit(0)

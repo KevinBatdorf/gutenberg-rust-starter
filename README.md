@@ -5,6 +5,11 @@ This is a minimum block plugin template to rapidly get started building WP block
 - Follow me on Twitter: https://twitter.com/kevinbatdorf
 - Sponsor this package: https://github.com/sponsors/KevinBatdorf/
 
+### Getting Started
+- Run `npm install` to install necessary packages
+- Run `npm run rename <text-domain> <label>` to rename the script files.
+- Run `npm run start` to start the dev mode
+
 ## Features
 ### Rust
 Rust is a systems programming language with a strong type system, memory safety, and great documentation. Beyond that it's fun to write and has a great community of helpful developers. Rust also compiles into WebAssembly, letting us utilize the power of systems programming on the web.
