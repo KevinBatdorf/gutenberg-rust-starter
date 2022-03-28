@@ -1,6 +1,5 @@
 import glob from 'glob'
-import fs from 'fs'
-import { sync as replace } from 'replace-in-file'
+import replace from 'replace-in-file'
 import { __rootDir } from './utils.mjs'
 
 const textDomain = process.argv[2]
@@ -18,13 +17,13 @@ const ignore = [
     `${__rootDir}/build/**/*`,
     `${__rootDir}/target/**/*`,
     `${__rootDir}/pkg/**/*`,
-    `${__rootDir}/**/*lock`,
 ]
 glob(`${__rootDir}/**/*.*`, { ignore }, (err, files) => {
-    if (err) {
-        throw err
-    }
+    if (err) throw err
+
     files.forEach((item) => {
-        replace({ from: 'rust-starter', to: textDomain, paths: item })
+        replace.sync({ from: 'rust-starter', to: textDomain, files: item })
+        replace.sync({ from: 'Rust Starter', to: label, files: item })
     })
+    console.log('Finished.')
 })
