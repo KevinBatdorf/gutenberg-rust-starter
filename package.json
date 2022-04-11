@@ -28,7 +28,7 @@
         "tailwindcss": "^3.0.23"
     },
     "dependencies": {
-        "@wordpress/block-editor": "^8.3.1",
+        "@wordpress/block-editor": "^8.5.0",
         "@wordpress/blocks": "^11.3.1",
         "@wordpress/element": "^4.2.1",
         "@wordpress/i18n": "^4.4.1"
