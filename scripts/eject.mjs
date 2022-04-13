@@ -1,6 +1,9 @@
+import { exec } from 'child_process'
 import fs from 'fs'
 import { deleteFile, loadFileData, __rootDir } from './utils.mjs'
+import util from 'util'
 
+const execPromise = util.promisify(exec)
 const command = process.argv[2]
 if (!command) {
     console.error('No command provided')
@@ -24,6 +27,7 @@ if (['tw', 'tailwind'].includes(command)) {
         '',
     )
     fs.writeFileSync(frontCss, frontData)
+    await execPromise('npm uninstall tailwindcss')
     console.log('Removed Tailwind files.')
     process.exit(0)
 }
@@ -43,6 +47,7 @@ if (['rust', 'r'].includes(command)) {
             'const server = { get_text() { return "Rust was removed" } }\n',
         )
     fs.writeFileSync(controlsFile, controlData)
+    await execPromise('npm uninstall @wasm-tool/wasm-pack-plugin')
     console.log('Removed Rust files.')
     process.exit(0)
 }
