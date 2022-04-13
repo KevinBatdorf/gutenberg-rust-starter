@@ -17,14 +17,16 @@ jobs:
               uses: actions/checkout@v2
             - name: Install server
               run: |
-                  npm ci --production
+                  npm ci
                   npm install -g @wordpress/env
                   rm .wp-env.json
+              with:
+                  NODE_ENV: 'production'
             - name: Change WP version
               uses: jsdaniell/create-json@1.1.2
               with:
                   name: 'wp-env.json'
-                  json: '{"core": ${{ matrix.wp-version }},"plugins":["."]}'
+                  json: '{"core": null,"plugins":["."]}'
             - name: Start server
               run: wp-env start
             - name: Cypress run
