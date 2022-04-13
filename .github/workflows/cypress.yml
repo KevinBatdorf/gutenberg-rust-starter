@@ -19,6 +19,7 @@ jobs:
               run: |
                   npm ci
                   npm install -g @wordpress/env
+                  npm run build
                   # rm .wp-env.json
               env:
                   NODE_ENV: 'production'
