@@ -1,4 +1,4 @@
 {
-    "core": "WordPress/WordPress#latest",
+    "core": null,
     "plugins": ["."]
 }

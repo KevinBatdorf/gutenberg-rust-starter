@@ -7,11 +7,11 @@ on:
     # - cron: "0 8 * * 4"
 jobs:
     test:
-        name: Run Cypress tests
+        name: Cypress
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                wp-version: [null, 'WordPress/WordPress#master']
+                wp-version: [null, '"WordPress/WordPress#master"']
         steps:
             - name: Clone repo
               uses: actions/checkout@v2
@@ -19,11 +19,12 @@ jobs:
               run: |
                   npm ci --production
                   npm install -g @wordpress/env
+                  rm wp-env.json
             - name: Change WP version
               uses: jsdaniell/create-json@1.1.2
               with:
                   name: 'wp-env.json'
-                  json: '{"core": "${{ matrix.wp-version }}","plugins":["."]}'
+                  json: '{"core": ${{ matrix.wp-version }},"plugins":["."]}'
             - name: Start server
               run: wp-env start
             - name: Cypress run
