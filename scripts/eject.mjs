@@ -50,9 +50,22 @@ const removeRust = async () => {
     console.log('Removed Rust files.')
 }
 
+const removeCypress = async () => {
+    deleteFile(`${__rootDir}/cypress.json`)
+    deleteFile(`${__rootDir}/cypress`)
+    deleteFile(`${__rootDir}/.github/workflows/cypress.yml`)
+    await execPromise(
+        'npm uninstall cypress eslint-plugin-cypress @wordpress/url',
+    )
+    console.log('Removed Cypress files.')
+}
+
 if (['tw', 'tailwind'].includes(command)) {
     removeTailwind().then(() => process.exit(0))
 }
 if (['rust', 'r'].includes(command)) {
     removeRust().then(() => process.exit(0))
+}
+if (['cypress', 'c'].includes(command)) {
+    removeCypress().then(() => process.exit(0))
 }

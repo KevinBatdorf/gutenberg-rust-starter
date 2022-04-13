@@ -3,7 +3,8 @@
         "browser": true,
         "es2021": true,
         "jest": true,
-        "node": true
+        "node": true,
+        "cypress/globals": true
     },
     "extends": [
         "eslint:recommended",
@@ -16,13 +17,13 @@
         "ecmaFeatures": { "jsx": true },
         "sourceType": "module"
     },
-    "plugins": ["react", "jsx-a11y", "prettier"],
+    "plugins": ["react", "jsx-a11y", "prettier", "cypress"],
     "rules": {
         "require-await": "error",
         "quotes": ["error", "single", { "avoidEscape": true }],
         "comma-dangle": ["error", "always-multiline"],
         "array-element-newline": ["error", "consistent"],
-        "no-constant-condition": ["error", { "checkLoops": false }],
+        "no-constant-condition": ["error", { "checkLoops": true }],
         "no-multi-spaces": ["error"],
         "semi": ["error", "never"],
         "space-in-parens": ["error", "never"],
