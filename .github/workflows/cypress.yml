@@ -20,7 +20,7 @@ jobs:
                   npm ci
                   npm install -g @wordpress/env
                   rm .wp-env.json
-              with:
+              env:
                   NODE_ENV: 'production'
             - name: Change WP version
               uses: jsdaniell/create-json@1.1.2
