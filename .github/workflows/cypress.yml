@@ -6,7 +6,8 @@ on:
     # At 08:00 on Thursday.
     # - cron: "0 8 * * 4"
 jobs:
-    login:
+    test:
+      name: Run Cypress tests
         runs-on: ubuntu-latest
         strategy:
             matrix:
@@ -19,11 +20,10 @@ jobs:
                   npm ci --production
                   npm install -g @wordpress/env
             - name: Change WP version
-              uses: jossef/action-set-json-field@v1
+              uses: jsdaniell/create-json@1.1.2
               with:
-                  file: wp-env.json
-                  field: core
-                  value: ${{ matrix.wp-version }}
+                name: "wp-env.json"
+                json: "{\"core\": \"${{ matrix.wp-version }}\",\"plugins\":[\".\"]}"
             - name: Start server
               run: wp-env start
             - name: Cypress run
