@@ -19,6 +19,7 @@ jobs:
               run: |
                   npm ci
                   npm install -g @wordpress/env
+                  npm install -g @wordpress/scripts
                   npm run build
                   # rm .wp-env.json
               env:
