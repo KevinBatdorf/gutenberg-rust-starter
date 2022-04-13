@@ -54,6 +54,9 @@ const removeCypress = async () => {
     deleteFile(`${__rootDir}/cypress.json`)
     deleteFile(`${__rootDir}/cypress`)
     deleteFile(`${__rootDir}/.github/workflows/cypress.yml`)
+    const esLintFile = `${__rootDir}/.eslintrc`
+    const esLintData = loadFileData(esLintFile).replace(/, "cypress"/g, '')
+    fs.writeFileSync(esLintFile, esLintData)
     await execPromise(
         'npm uninstall cypress eslint-plugin-cypress @wordpress/url',
     )
