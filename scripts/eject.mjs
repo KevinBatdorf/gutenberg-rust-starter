@@ -12,13 +12,6 @@ if (!command) {
 }
 console.log(`Ejecting feature: ${command}`)
 
-if (['tw', 'tailwind'].includes(command)) {
-    removeTailwind().then(() => process.exit(0))
-}
-if (['rust', 'r'].includes(command)) {
-    removeRust().then(() => process.exit(0))
-}
-
 const removeTailwind = async () => {
     deleteFile('./tailwind.config.js')
     deleteFile('./postcss.config.js')
@@ -55,4 +48,11 @@ const removeRust = async () => {
     fs.writeFileSync(controlsFile, controlData)
     await execPromise('npm uninstall @wasm-tool/wasm-pack-plugin')
     console.log('Removed Rust files.')
+}
+
+if (['tw', 'tailwind'].includes(command)) {
+    removeTailwind().then(() => process.exit(0))
+}
+if (['rust', 'r'].includes(command)) {
+    removeRust().then(() => process.exit(0))
 }
