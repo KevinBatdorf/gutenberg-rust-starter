@@ -9,9 +9,9 @@ jobs:
     test:
         name: Cypress
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                wp-version: [null, '"WordPress/WordPress#master"']
+        # strategy:
+        #     matrix:
+        #         wp-version: [null, '"WordPress/WordPress#master"']
         steps:
             - name: Clone repo
               uses: actions/checkout@v2
@@ -19,14 +19,14 @@ jobs:
               run: |
                   npm ci
                   npm install -g @wordpress/env
-                  rm .wp-env.json
+                  # rm .wp-env.json
               env:
                   NODE_ENV: 'production'
-            - name: Change WP version
-              uses: jsdaniell/create-json@1.1.2
-              with:
-                  name: 'wp-env.json'
-                  json: '{"core": null,"plugins":["."]}'
+            # - name: Change WP version
+            #   uses: jsdaniell/create-json@1.1.2
+            #   with:
+            #       name: 'wp-env.json'
+            #       json: '{"core": ${{ matrix.wp-version }},"plugins":["."]}'
             - name: Start server
               run: wp-env start
             - name: Cypress run
