@@ -1,4 +1,4 @@
-=== Rust Gutenberg TypeScript ===
+=== Rust Starter ===
 Contributors:      kbat82
 Tags:              block
 Tested up to:      5.9

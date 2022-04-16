@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Rust Gutenberg TypeScript
+ * Plugin Name:       Rust Starter
  * Description:       An example block built using Rust and TypeScript
  * Requires at least: 5.8
  * Requires PHP:      7.0

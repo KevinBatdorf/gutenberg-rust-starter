@@ -3,9 +3,9 @@
     "apiVersion": 2,
     "name": "kevinbatdorf/rust-starter",
     "version": "0.1.0",
-    "title": "Rust Gutenberg TypeScript",
+    "title": "Rust Starter",
     "category": "common",
-    "description": "An example block built using Rust and TypeScript",
+    "description": "My amazing block",
     "attributes": {
         "text": {
             "type": "string",
