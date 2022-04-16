@@ -17,6 +17,7 @@
         "ecmaFeatures": { "jsx": true },
         "sourceType": "module"
     },
+    "parser": "babel-eslint",
     "plugins": ["react", "jsx-a11y", "prettier", "cypress"],
     "rules": {
         "require-await": "error",
