@@ -15,7 +15,8 @@
     ],
     "parserOptions": {
         "ecmaFeatures": { "jsx": true },
-        "sourceType": "module"
+        "sourceType": "module",
+        "allowImportExportEverywhere": true
     },
     "parser": "babel-eslint",
     "plugins": ["react", "jsx-a11y", "prettier", "cypress"],

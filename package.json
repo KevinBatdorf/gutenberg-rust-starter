@@ -17,6 +17,7 @@
         "rename": "node scripts/rename.mjs"
     },
     "devDependencies": {
+        "@babel/eslint-parser": "^7.17.0",
         "@types/wordpress__block-editor": "^7.0.0",
         "@types/wordpress__blocks": "^11.0.0",
         "@wasm-tool/wasm-pack-plugin": "^1.6.0",
@@ -24,7 +25,6 @@
         "@wordpress/scripts": "^22.4.0",
         "@wordpress/url": "^3.7.0",
         "autoprefixer": "^10.4.4",
-        "babel-eslint": "^10.1.0",
         "cypress": "^9.5.4",
         "eslint-plugin-cypress": "^2.12.1",
         "fast-glob": "^3.2.11",
