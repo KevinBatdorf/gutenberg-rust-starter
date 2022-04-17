@@ -4,6 +4,7 @@ module.exports = {
     semi: false,
     singleQuote: true,
     bracketSameLine: true,
+    importOrder: ['^@wordpress/(.*)$', '<THIRD_PARTY_MODULES>', '^[./]'],
     overrides: [
         {
             files: ['**/*.html'],
