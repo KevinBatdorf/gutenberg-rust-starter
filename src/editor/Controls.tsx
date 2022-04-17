@@ -1,9 +1,9 @@
-import { PanelBody, BaseControl, Button } from '@wordpress/components'
-import { __ } from '@wordpress/i18n'
 import { InspectorControls } from '@wordpress/block-editor'
-import { useEffect } from '@wordpress/element'
-import { useServer } from '../hooks/useServer'
+import { PanelBody, BaseControl, Button } from '@wordpress/components'
+import { useCallback, useEffect } from '@wordpress/element'
+import { __ } from '@wordpress/i18n'
 import type { Attributes } from '..'
+import { useServer } from '../hooks/useServer'
 import './editor.css'
 
 interface ControlProps {
@@ -13,17 +13,17 @@ interface ControlProps {
 
 export const Controls = ({ attributes, setAttributes }: ControlProps) => {
     const server = useServer()
-    const setQuote = () => {
-        if (server?.hasOwnProperty('get_text')) {
+    const setQuote = useCallback(() => {
+        if (server?.get_text) {
             setAttributes({ text: server.get_text() })
         }
-    }
+    }, [server, setAttributes])
 
     useEffect(() => {
         if (attributes.text === 'Loading...') {
             setQuote()
         }
-    }, [server])
+    }, [server, setQuote, attributes.text])
 
     return (
         <InspectorControls>

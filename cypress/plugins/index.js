@@ -1,1 +1,3 @@
-module.exports = () => {}
+module.exports = () => {
+    // https://docs.cypress.io/plugins/directory
+}

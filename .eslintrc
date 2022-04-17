@@ -3,14 +3,16 @@
         "browser": true,
         "es2021": true,
         "jest": true,
-        "node": true,
-        "cypress/globals": true
+        "node": true
     },
     "extends": [
         "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
         "plugin:react-hooks/recommended",
         "plugin:jsx-a11y/recommended",
+        "plugin:cypress/recommended",
         "prettier"
     ],
     "parserOptions": {
@@ -18,8 +20,9 @@
         "sourceType": "module",
         "allowImportExportEverywhere": true
     },
-    "parser": "babel-eslint",
-    "plugins": ["react", "jsx-a11y", "prettier", "cypress"],
+    "ignorePatterns": ["node_modules/", "pkg/", "build/"],
+    "parser": "@typescript-eslint/parser",
+    "plugins": [],
     "rules": {
         "require-await": "error",
         "quotes": ["error", "single", { "avoidEscape": true }],
@@ -42,6 +45,7 @@
         "react/react-in-jsx-scope": "off",
         "quote-props": ["error", "as-needed"],
         "no-multiple-empty-lines": ["error", { "max": 1 }],
+        "@typescript-eslint/no-var-requires": "off",
         "lines-around-comment": [
             "error",
             {
