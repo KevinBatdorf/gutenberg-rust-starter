@@ -41,10 +41,10 @@ module.exports = {
                 700: '#757575', // Meets 4.6:1 text contrast against white.
                 900: '#1e1e1e',
             },
-        },
-        zIndex: {
-            high: '99999',
-            max: '2147483647', // max int values - don't block WP re-auth modal
+            zIndex: {
+                high: '99999',
+                max: '2147483647', // max int values - don't block WP re-auth modal
+            },
         },
     },
     plugins: [],
