@@ -1,7 +1,7 @@
 // See postcss.config.js for more parsing options.
 module.exports = {
     // Tnis should match the namespace you use in your css styles.
-    important: '.rust-starter',
+    important: '.image-filters-block',
     theme: {
         screens: {
             xxs: '280px',
@@ -15,7 +15,7 @@ module.exports = {
             '3xl': '1600px',
             '4xl': '1920px',
         },
-        extend: {
+        colors: {
             'wp-theme': {
                 500: 'var(--wp-admin-theme-color)',
                 600: 'var(--wp-admin-theme-color-darker-10)',
@@ -41,9 +41,14 @@ module.exports = {
                 700: '#757575', // Meets 4.6:1 text contrast against white.
                 900: '#1e1e1e',
             },
+        },
+        extend: {
             zIndex: {
                 high: '99999',
                 max: '2147483647', // max int values - don't block WP re-auth modal
+            },
+            ringWidth: {
+                wp: 'var(--wp-admin-border-width-focus)',
             },
         },
     },
