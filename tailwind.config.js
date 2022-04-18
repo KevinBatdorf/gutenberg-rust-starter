@@ -1,3 +1,4 @@
+const colors = require('tailwindcss/colors')
 // See postcss.config.js for more parsing options.
 module.exports = {
     // Tnis should match the namespace you use in your css styles.
@@ -16,6 +17,7 @@ module.exports = {
             '4xl': '1920px',
         },
         colors: {
+            ...colors,
             'wp-theme': {
                 500: 'var(--wp-admin-theme-color)',
                 600: 'var(--wp-admin-theme-color-darker-10)',
