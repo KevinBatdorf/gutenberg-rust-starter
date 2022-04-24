@@ -2,7 +2,7 @@ const colors = require('tailwindcss/colors')
 // See postcss.config.js for more parsing options.
 module.exports = {
     // Tnis should match the namespace you use in your css styles.
-    important: '.image-filters-block',
+    important: '.rust-starter',
     theme: {
         screens: {
             xxs: '280px',
