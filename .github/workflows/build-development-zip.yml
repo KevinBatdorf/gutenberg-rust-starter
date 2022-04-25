@@ -26,3 +26,4 @@ jobs:
                       !${{ github.workspace }}/.github/
                       !${{ github.workspace }}/.wordpress-org/
                       !${{ github.workspace }}/assets/
+                      !${{ github.workspace }}/scripts/
