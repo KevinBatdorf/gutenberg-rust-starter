@@ -24,16 +24,18 @@ try {
 const ignore = [
     `${__rootDir}/node_modules/**/*`,
     `${__rootDir}/scripts/**/*`,
-    `${__rootDir}/build/**/*`,
     `${__rootDir}/target/**/*`,
+    `${__rootDir}/build/**/*`,
+    `${__rootDir}/.git/**/*`,
     `${__rootDir}/pkg/**/*`,
 ]
-const files = fg.sync([`${__rootDir}/**/*.*`], { ignore })
-files.forEach((item) => {
-    const options = { files: item }
-    replace.sync({ from: /rust-starter/g, to: textDomain, ...options })
-    replace.sync({ from: /Rust Starter/g, to: label, ...options })
-})
+const files = fg.sync([`${__rootDir}/**/*.*`], { ignore, dot: true })
+console.log(files)
+// files.forEach((item) => {
+//     const options = { files: item }
+//     replace.sync({ from: /rust-starter/g, to: textDomain, ...options })
+//     replace.sync({ from: /Rust Starter/g, to: label, ...options })
+// })
 
 console.log('Finished.')
 process.exit(0)
