@@ -15,4 +15,5 @@
 
 add_action('init', function () {
     register_block_type(__DIR__ . '/build');
+    wp_set_script_translations('kevinbatdorf/rust-starter', 'rust-starter');
 });
