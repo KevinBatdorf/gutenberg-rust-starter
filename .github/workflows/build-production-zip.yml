@@ -22,6 +22,8 @@ jobs:
                   path: |
                       ${{ github.workspace }}/
                       !${{ github.workspace }}/node_modules/
+                      !${{ github.workspace }}/cypress/
+                      !${{ github.workspace }}/target/
                       !${{ github.workspace }}/.git/
                       !${{ github.workspace }}/.github/
                       !${{ github.workspace }}/.wordpress-org/
