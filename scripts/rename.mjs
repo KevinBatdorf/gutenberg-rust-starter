@@ -30,12 +30,11 @@ const ignore = [
     `${__rootDir}/pkg/**/*`,
 ]
 const files = fg.sync([`${__rootDir}/**/*.*`], { ignore, dot: true })
-console.log(files)
-// files.forEach((item) => {
-//     const options = { files: item }
-//     replace.sync({ from: /rust-starter/g, to: textDomain, ...options })
-//     replace.sync({ from: /Rust Starter/g, to: label, ...options })
-// })
+files.forEach((item) => {
+    const options = { files: item }
+    replace.sync({ from: /rust-starter/g, to: textDomain, ...options })
+    replace.sync({ from: /Rust Starter/g, to: label, ...options })
+})
 
 console.log('Finished.')
 process.exit(0)
