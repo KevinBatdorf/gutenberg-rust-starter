@@ -19,7 +19,7 @@
     "devDependencies": {
         "@trivago/prettier-plugin-sort-imports": "^3.2.0",
         "@types/wordpress__block-editor": "^7.0.0",
-        "@types/wordpress__blocks": "^11.0.0",
+        "@types/wordpress__blocks": "^11.0.1",
         "@typescript-eslint/parser": "^5.19.0",
         "@wasm-tool/wasm-pack-plugin": "^1.6.0",
         "@wordpress/block-editor": "^8.5.1",
@@ -44,7 +44,7 @@
     },
     "dependencies": {
         "@wordpress/block-editor": "^8.5.1",
-        "@wordpress/blocks": "^11.5.1",
+        "@wordpress/blocks": "^11.8.0",
         "@wordpress/element": "^4.2.1",
         "@wordpress/i18n": "^4.6.0"
     }
