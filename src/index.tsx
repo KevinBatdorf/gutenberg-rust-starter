@@ -1,13 +1,13 @@
-import { registerBlockType } from '@wordpress/blocks'
-import { useBlockProps as blockProps } from '@wordpress/block-editor'
-import { __ } from '@wordpress/i18n'
-import { TheBlock } from './front/TheBlock'
-import { Controls } from './editor/Controls'
-import blockConfig from './block.json'
+import { useBlockProps as blockProps } from '@wordpress/block-editor';
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import blockConfig from './block.json';
+import { Controls } from './editor/Controls';
+import { TheBlock } from './front/TheBlock';
 
 export type Attributes = {
-    text: string
-}
+    text: string;
+};
 
 registerBlockType<Attributes>('kevinbatdorf/rust-starter', {
     ...blockConfig,
@@ -34,6 +34,6 @@ registerBlockType<Attributes>('kevinbatdorf/rust-starter', {
             <div {...blockProps.save()}>
                 <TheBlock {...attributes} />
             </div>
-        )
+        );
     },
-})
+});

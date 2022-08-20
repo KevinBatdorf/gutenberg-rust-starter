@@ -1,6 +1,6 @@
-const path = require('path')
-const WasmPackPlugin = require('@wasm-tool/wasm-pack-plugin')
-const defaultConfig = require('@wordpress/scripts/config/webpack.config')
+const path = require('path');
+const WasmPackPlugin = require('@wasm-tool/wasm-pack-plugin');
+const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 
 module.exports = {
     ...defaultConfig,
@@ -15,4 +15,4 @@ module.exports = {
     experiments: {
         asyncWebAssembly: true,
     },
-}
+};
