@@ -55,7 +55,7 @@ export const setPostContent = (content) => {
 export const openBlockInserter = () => {
     cy.get('button[aria-label="Toggle block inserter"]').then((button) => {
         if (button.attr('aria-pressed') === 'false') {
-            button.click();
+            cy.get('button[aria-label="Toggle block inserter"]').click();
         }
     });
     cy.get('.block-editor-inserter__main-area').should('exist');
@@ -63,13 +63,18 @@ export const openBlockInserter = () => {
 export const closeBlockInserter = () => {
     cy.get('button[aria-label="Toggle block inserter"]').then((button) => {
         if (button.attr('aria-pressed') === 'true') {
-            button.click();
+            cy.get('button[aria-label="Toggle block inserter"]').click();
         }
     });
 };
 export const addBlock = (slug) => {
     cy.openBlockInserter();
-    cy.get(`button[class*="${slug}"]`).click();
+    cy.window().then((win) => {
+        cy.waitUntil(() =>
+            win.document.querySelector(`button[class*="${slug}"]`),
+        );
+        cy.get(`button[class*="${slug}"]`).click();
+    });
 };
 export const wpDataSelect = (store, selector, ...parameters) => {
     cy.window().then((win) => {
