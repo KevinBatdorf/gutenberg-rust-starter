@@ -74,7 +74,7 @@ export const addBlock = (slug) => {
             win.document.querySelector(`button[class*="${slug}"]`),
         );
         cy.get(`button[class*="${slug}"]`).should('exist');
-        cy.get(`button[class*="${slug}"]`).click();
+        cy.get(`button[class*="${slug}"]`).click({ force: true });
     });
 };
 export const wpDataSelect = (store, selector, ...parameters) => {
