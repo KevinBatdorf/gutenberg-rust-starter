@@ -73,6 +73,7 @@ export const addBlock = (slug) => {
         cy.waitUntil(() =>
             win.document.querySelector(`button[class*="${slug}"]`),
         );
+        cy.get(`button[class*="${slug}"]`).should('exist');
         cy.get(`button[class*="${slug}"]`).click();
     });
 };
