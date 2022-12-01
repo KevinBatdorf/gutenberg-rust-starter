@@ -46,7 +46,7 @@
     "dependencies": {
         "@wordpress/block-editor": "^9.8.0",
         "@wordpress/blocks": "^11.15.0",
-        "@wordpress/element": "^4.14.0",
+        "@wordpress/element": "^4.20.0",
         "@wordpress/i18n": "^4.16.0"
     }
 }
