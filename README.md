@@ -49,3 +49,9 @@ Read more about Tailwind CSS: https://tailwindcss.com/
 Cypress is a CLI test runner as well as an interactive one. Essentially it will run your tests through a browser, clicking here or there as you tell it to. It has an intuative API and is easy to learn. I've included some helpers to get started with WordPress, such as `cy.loginUser()` and `cy.visitNewPageEditor()`
 
 Read more about Cypress: https://www.cypress.io/
+
+### Projects using this starter template
+
+- Code Block Pro ([GitHub](https://github.com/KevinBatdorf/code-block-pro/),[WordPress](https://wordpress.org/plugins/code-block-pro/))
+- Block Diffusion ([GitHub](https://github.com/KevinBatdorf/block-diffusion), [WordPress](https://wordpress.org/plugins/stable-diffusion/))
+- Wavy Divider ([GitHub](https://github.com/KevinBatdorf/wavy-divider), [WordPress](https://wordpress.org/plugins/wavy-divider/))
