@@ -52,6 +52,6 @@ Read more about Cypress: https://www.cypress.io/
 
 ### Projects using this starter template
 
-- Code Block Pro ([GitHub](https://github.com/KevinBatdorf/code-block-pro/),[WordPress](https://wordpress.org/plugins/code-block-pro/))
+- Code Block Pro ([GitHub](https://github.com/KevinBatdorf/code-block-pro/), [WordPress](https://wordpress.org/plugins/code-block-pro/))
 - Block Diffusion ([GitHub](https://github.com/KevinBatdorf/block-diffusion), [WordPress](https://wordpress.org/plugins/stable-diffusion/))
 - Wavy Divider ([GitHub](https://github.com/KevinBatdorf/wavy-divider), [WordPress](https://wordpress.org/plugins/wavy-divider/))
