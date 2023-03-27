@@ -4,7 +4,7 @@ on:
         branches:
           - main
     workflow_dispatch:
-    schedule:
+    # schedule:
     # At 08:00 daily
     # - cron: "0 8 * * *"
 jobs:
