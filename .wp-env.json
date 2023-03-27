@@ -1,4 +1,4 @@
 {
-    "core": "WordPress/WordPress#6.2-branch",
+    "core": null,
     "plugins": ["."]
 }
