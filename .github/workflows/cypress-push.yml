@@ -1,45 +1,39 @@
-name: Run Cypress test suite
+name: Run Cypress on push
 on:
     push:
+        branches-ignore:
+          - main
     workflow_dispatch:
-    schedule:
-    # At 08:00 daily
-    - cron: "0 8 * * *"
 jobs:
     test:
-        name: Cypress
+        name: WordPress (${{ matrix.spec }})
+        if: always()
         concurrency:
-            group: cypress - ${{ github.event.pull_request.number || github.ref }} - ${{ matrix.wp-version }}
+            group: cypress - ${{ github.event.pull_request.number || github.ref }} - ${{ matrix.spec }}
             cancel-in-progress: true
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                wp-version: [null, '"WordPress/WordPress#master"']
+                spec: [
+                  "sanity-checks",
+                ]
         steps:
             - name: Clone repo
               uses: actions/checkout@v3
             - name: Install server
               run: |
                   npm ci
+                  npx eslint --max-warnings 0 .
                   npm run build
-            - name: Maybe remove .wp-env.json
-              if: ${{ matrix.wp-version }}
-              run: rm .wp-env.json
-            - name: Maybe change WP version
-              uses: jsdaniell/create-json@v1.2.1
-              if: ${{ matrix.wp-version }}
-              with:
-                  name: '.wp-env.json'
-                  json: '{
-                    "core": ${{ matrix.wp-version }},
-                    "plugins":["."]
-                  }'
             - name: Start server
               run: |
                   npm install -g @wordpress/env
                   wp-env start --update
+                  echo "WordPress version: `wp-env run cli core version`"
             - name: Cypress run
               uses: cypress-io/github-action@v4
+              with:
+                spec: cypress/e2e/${{ matrix.spec }}.cy.js
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             - uses: actions/upload-artifact@v3
