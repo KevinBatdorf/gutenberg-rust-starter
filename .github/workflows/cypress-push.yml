@@ -33,6 +33,7 @@ jobs:
             - name: Cypress run
               uses: cypress-io/github-action@v4
               with:
+                browser: chrome
                 spec: cypress/e2e/${{ matrix.spec }}.cy.js
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
