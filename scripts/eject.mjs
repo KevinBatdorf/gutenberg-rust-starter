@@ -53,7 +53,8 @@ const removeRust = async () => {
 const removeCypress = async () => {
     deleteFile(`${__rootDir}/cypress.json`);
     deleteFile(`${__rootDir}/cypress`);
-    deleteFile(`${__rootDir}/.github/workflows/cypress.yml`);
+    deleteFile(`${__rootDir}/.github/workflows/cypress-main.yml`);
+    deleteFile(`${__rootDir}/.github/workflows/cypress-push.yml`);
     const esLintFile = `${__rootDir}/.eslintrc`;
     const esLintData = loadFileData(esLintFile).replace(/, "cypress"/g, '');
     fs.writeFileSync(esLintFile, esLintData);
