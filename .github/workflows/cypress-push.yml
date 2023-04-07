@@ -2,7 +2,7 @@ name: Run Cypress on push
 on:
     push:
         branches-ignore:
-          - main
+            - main
     workflow_dispatch:
 jobs:
     test:
@@ -14,13 +14,14 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                spec: [
-                  "sanity-checks",
-                ]
+                spec: ['sanity-checks']
         steps:
             - name: Clone repo
               uses: actions/checkout@v3
-            - name: Install server
+
+            - name: Install wasm-pack
+              uses: jetli/wasm-pack-action@v0.4.0
+            - name: Install and build
               run: |
                   npm ci
                   npx eslint --max-warnings 0 .
@@ -33,8 +34,8 @@ jobs:
             - name: Cypress run
               uses: cypress-io/github-action@v4
               with:
-                browser: chrome
-                spec: cypress/e2e/${{ matrix.spec }}.cy.js
+                  browser: chrome
+                  spec: cypress/e2e/${{ matrix.spec }}.cy.js
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             - uses: actions/upload-artifact@v3

@@ -10,6 +10,9 @@ jobs:
         steps:
             - name: Check out code
               uses: actions/checkout@v3
+
+            - name: Install wasm-pack
+              uses: jetli/wasm-pack-action@v0.4.0
             - name: npm install and build
               run: |
                   npm ci
@@ -34,3 +37,4 @@ jobs:
                       !${{ github.workspace }}/assets/
                       !${{ github.workspace }}/scripts/
                       !${{ github.workspace }}/package-lock.json
+                      !${{ github.workspace }}/Cargo.lock
