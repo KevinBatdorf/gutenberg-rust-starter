@@ -4,9 +4,9 @@ on:
         branches:
           - main
     workflow_dispatch:
-    # schedule:
+    schedule:
     # At 08:00 daily
-    # - cron: "0 8 * * *"
+    - cron: "0 8 * * *"
 jobs:
     test:
         name: WordPress ${{ matrix.wp-version }} (${{ matrix.spec }})
@@ -24,7 +24,10 @@ jobs:
         steps:
             - name: Clone repo
               uses: actions/checkout@v3
-            - name: Install server
+
+            - name: Install wasm-pack
+              uses: jetli/wasm-pack-action@v0.4.0
+            - name: Install and Build
               run: |
                   npm ci
                   npx eslint --max-warnings 0 .

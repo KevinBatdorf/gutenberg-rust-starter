@@ -1,7 +1,6 @@
 node_modules
 build
 /target
-Cargo.lock
 
 cypress/screenshots/**/*
 !cypress/screenshots/**/.gitkeep
