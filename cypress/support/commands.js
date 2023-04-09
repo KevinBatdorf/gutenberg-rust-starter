@@ -1,21 +1,21 @@
 import { BLOCK_CONTAINER } from '../constants';
 import {
-    addBlock,
-    closeWelcomeGuide,
-    openBlockInserter,
-    closeBlockInserter,
-    openBlockSettingsSideBar,
-    openSideBarPanel,
-    saveDraft,
-    setPostContent,
-    wpDataSelect,
-    previewCurrentPage,
+	addBlock,
+	closeWelcomeGuide,
+	openBlockInserter,
+	closeBlockInserter,
+	openBlockSettingsSideBar,
+	openSideBarPanel,
+	saveDraft,
+	setPostContent,
+	wpDataSelect,
+	previewCurrentPage,
 } from './gutenberg';
 import { login, logout } from './login-logout';
 import {
-    visitPageEditor,
-    visitAdminPage,
-    visitToLoginPage,
+	visitPageEditor,
+	visitAdminPage,
+	visitToLoginPage,
 } from './navigate-pages';
 import { installPlugin, uninstallPlugin } from './plugins';
 import { resetDatabase } from './wp-cli';
@@ -26,15 +26,15 @@ import { resetDatabase } from './wp-cli';
 // Getting around
 Cypress.Commands.add('visitLoginPage', (query) => visitToLoginPage(query));
 Cypress.Commands.add('visitAdminPage', (path, query) =>
-    visitAdminPage(path, query),
+	visitAdminPage(path, query),
 );
 Cypress.Commands.add('visitNewPageEditor', (query, skipWelcomeGuide) =>
-    visitPageEditor(query, skipWelcomeGuide),
+	visitPageEditor(query, skipWelcomeGuide),
 );
 
 // Login logout
 Cypress.Commands.add('loginUser', (username, password) =>
-    login(username, password),
+	login(username, password),
 );
 Cypress.Commands.add('logoutUser', () => logout());
 
@@ -44,24 +44,24 @@ Cypress.Commands.add('saveDraft', () => saveDraft());
 Cypress.Commands.add('openBlockInserter', () => openBlockInserter());
 Cypress.Commands.add('closeBlockInserter', () => closeBlockInserter());
 Cypress.Commands.add('openBlockSettingsSideBar', () =>
-    openBlockSettingsSideBar(),
+	openBlockSettingsSideBar(),
 );
 Cypress.Commands.add('openSideBarPanel', (label) => openSideBarPanel(label));
 Cypress.Commands.add('addBlock', (slug) => addBlock(slug));
 Cypress.Commands.add('setPostContent', (content) => setPostContent(content));
 Cypress.Commands.add('getPostContent', (addon = '') => {
-    return cy.get(`${BLOCK_CONTAINER} ${addon}`);
+	return cy.get(`${BLOCK_CONTAINER} ${addon}`);
 });
 Cypress.Commands.add('focusBlock', (blockName, addon = '') => {
-    cy.get(
-        `${BLOCK_CONTAINER} .wp-block[class$="${blockName}"] ${addon}`,
-    ).click();
+	cy.get(
+		`${BLOCK_CONTAINER} .wp-block[class$="${blockName}"] ${addon}`,
+	).click();
 });
 Cypress.Commands.add('getCurrentPostObject', () => {
-    cy.wpDataSelect('core/editor', 'getCurrentPost');
+	cy.wpDataSelect('core/editor', 'getCurrentPost');
 });
 Cypress.Commands.add('wpDataSelect', (store, selector, ...parameters) =>
-    wpDataSelect(store, selector, ...parameters),
+	wpDataSelect(store, selector, ...parameters),
 );
 Cypress.Commands.add('previewCurrentPage', () => previewCurrentPage());
 
