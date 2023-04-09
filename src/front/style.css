@@ -1,14 +1,14 @@
 .rust-starter {
-    --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
-    --tw-ring-offset-width: 0px;
-    --tw-ring-offset-color: transparent;
-    /* --tw-ring-color: you-may-want-to-update-this; */
+	--tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
+	--tw-ring-offset-width: 0px;
+	--tw-ring-offset-color: transparent;
+	/* --tw-ring-color: you-may-want-to-update-this; */
 }
 .rust-starter *,
 .rust-starter *:after,
 .rust-starter *:before {
-    box-sizing: border-box;
-    border: 0 solid #e5e7eb;
+	box-sizing: border-box;
+	border: 0 solid #e5e7eb;
 }
 @tailwind base;
 @tailwind components;
