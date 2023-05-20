@@ -59,7 +59,7 @@ jobs:
             - name: Install wasm-pack
               uses: jetli/wasm-pack-action@v0.4.0
 
-            - name: Install and build
+            - name: Build
               run: |
                   npx eslint --max-warnings 0 .
                   npm run build
