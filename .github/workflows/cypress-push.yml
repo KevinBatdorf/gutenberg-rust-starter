@@ -5,8 +5,39 @@ on:
             - main
     workflow_dispatch:
 jobs:
+    prepare_spec_files:
+        name: Prepage file list
+        runs-on: ubuntu-latest
+        outputs:
+            spec: ${{ steps.files.outputs.spec }}
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+            - name: Files
+              id: files
+              run: |
+                  # All the .cy.js files in the cypress/e2e directory in an array
+                  ls cypress/e2e/*.cy.js | xargs -I{} basename {} .cy.js | jq -Rrs "split(\"\n\") | map(select(length > 0)) | tojson" | tee /tmp/spec.json
+                  echo "spec=$(cat /tmp/spec.json)" >> "$GITHUB_OUTPUT"
+    npm_install:
+        name: Install Node modules
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+            - name: Cache node modules
+              uses: actions/cache@v3
+              id: cache-node-modules
+              with:
+                  path: node_modules
+                  key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+            - name: Install npm dependencies
+              if: steps.cache-node-modules.outputs.cache-hit != 'true'
+              run: npm ci
+
     test:
         name: WordPress (${{ matrix.spec }})
+        needs: [prepare_spec_files, npm_install]
         concurrency:
             group: cypress - ${{ github.event.pull_request.number || github.ref }} - ${{ matrix.spec }}
             cancel-in-progress: true
@@ -14,25 +45,31 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                spec: ['sanity-checks']
+                spec: ${{ fromJson(needs.prepare_spec_files.outputs.spec) }}
         steps:
             - name: Clone repo
               uses: actions/checkout@v3
+            - name: Restore node modules cache
+              uses: actions/cache@v3
+              with:
+                  path: node_modules
+                  key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: ${{ runner.os }}-node-modules-
 
             - name: Install wasm-pack
               uses: jetli/wasm-pack-action@v0.4.0
+
             - name: Install and build
               run: |
-                  npm ci
                   npx eslint --max-warnings 0 .
                   npm run build
             - name: Start server
               run: |
-                  npm install -g @wordpress/env
-                  wp-env start --update
+                  npx wp-env start
                   echo "WordPress version: `wp-env run cli core version`"
+
             - name: Cypress run
-              uses: cypress-io/github-action@v4
+              uses: cypress-io/github-action@v5
               with:
                   browser: chrome
                   spec: cypress/e2e/${{ matrix.spec }}.cy.js
