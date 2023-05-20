@@ -89,8 +89,8 @@ jobs:
                 json: '{"core": "WordPress/WordPress#${{ env.branch }}", "plugins":["."]}'
           - name: Start server
             run: |
-                wp-env start
-                echo "WordPress version: `wp-env run cli core version`"
+                npx wp-env start
+                echo "WordPress version: `npx wp-env run cli core version`"
           - name: Cypress run
             uses: cypress-io/github-action@v5
             with:
