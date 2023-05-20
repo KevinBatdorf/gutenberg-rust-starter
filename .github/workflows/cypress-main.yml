@@ -8,65 +8,103 @@ on:
     # At 08:00 daily
     - cron: "0 8 * * *"
 jobs:
-    test:
-        name: WordPress ${{ matrix.wp-version }} (${{ matrix.spec }})
-        concurrency:
-            group: cypress - ${{ github.event.pull_request.number || github.ref }} - ${{ matrix.wp-version }} - ${{ matrix.spec }}
-            cancel-in-progress: true
-        runs-on: ubuntu-latest
-        strategy:
-            fail-fast: false
-            matrix:
-                wp-version: [null, 'Next']
-                spec: [
-                  "sanity-checks",
-                ]
-        steps:
-            - name: Clone repo
-              uses: actions/checkout@v3
+  generate_file_list:
+    name: Generate file list
+    runs-on: ubuntu-latest
+    outputs:
+        spec: ${{ steps.list_files.outputs.spec }}
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+        - name: List Files
+          id: list_files
+          run: |
+              # List all the .cy.js files in the cypress/e2e directory
+              # and output their file names without the extension
+              ls cypress/e2e/*.cy.js | xargs -I{} basename {} .cy.js | jq -Rrs "split(\"\n\") | map(select(length > 0)) | tojson" | tee /tmp/spec.json
+              echo "spec=$(cat /tmp/spec.json)" >> "$GITHUB_OUTPUT"
+  npm_install:
+    name: Install Node modules
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+        - name: Cache node modules
+          uses: actions/cache@v3
+          id: cache-node-modules
+          with:
+              path: node_modules
+              key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        - name: Install npm dependencies
+          if: steps.cache-node-modules.outputs.cache-hit != 'true'
+          run: npm ci
 
-            - name: Install wasm-pack
-              uses: jetli/wasm-pack-action@v0.4.0
-            - name: Install and Build
-              run: |
-                  npm ci
-                  npx eslint --max-warnings 0 .
-                  npm run build
-            - name: Get Latest WP Branch
-              if: ${{ matrix.wp-version }}
-              run: |
-                  echo "branch=$(curl -L -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/WordPress/WordPress/branches\?per_page\=100 | jq '.[].name' | awk '/-branch/' | sort -V | tail -n1 | tr -d '"')" >> $GITHUB_ENV
-            - name: Maybe remove .wp-env.json
-              if: ${{ matrix.wp-version }}
-              run: rm .wp-env.json
-            - name: Maybe change WP version
-              uses: jsdaniell/create-json@v1.2.1
-              if: ${{ matrix.wp-version }}
-              with:
-                  name: '.wp-env.json'
-                  json: '{
-                    "core": "WordPress/WordPress#${{ env.branch }}",
-                    "plugins":["."]
-                  }'
-            - name: Start server
-              run: |
-                  npm install -g @wordpress/env
-                  wp-env start --update
-                  echo "WordPress version: `wp-env run cli core version`"
-            - name: Cypress run
-              uses: cypress-io/github-action@v4
-              with:
-                browser: chrome
-                spec: cypress/e2e/${{ matrix.spec }}.cy.js
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            - uses: actions/upload-artifact@v3
-              if: failure()
-              with:
-                  name: cypress-screenshots
-                  path: cypress/screenshots
-            - uses: actions/upload-artifact@v3
-              if: failure()
-              with:
-                  name: cypress-videos
-                  path: cypress/videos
+  test:
+      name: WordPress ${{ matrix.wp-version }} (${{ matrix.spec }})
+      needs: [generate_file_list, npm_install]
+      concurrency:
+          group: cypress - ${{ github.event.pull_request.number || github.ref }} - ${{ matrix.wp-version }} - ${{ matrix.spec }}
+          cancel-in-progress: true
+      runs-on: ubuntu-latest
+      strategy:
+          fail-fast: false
+          matrix:
+              wp-version: [null, 'Next']
+              spec: ${{ fromJson(needs.generate_file_list.outputs.spec) }}
+      steps:
+          - name: Clone repo
+            uses: actions/checkout@v3
+          - name: Set up node
+            uses: actions/setup-node@v3
+          - name: Node modules cache
+            uses: actions/cache@v3
+            id: cache-node-modules
+            with:
+                path: node_modules
+                key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          - name: Install npm dependencies
+            if: steps.cache-node-modules.outputs.cache-hit != 'true'
+            run: npm ci
+
+          - name: Install wasm-pack
+            uses: jetli/wasm-pack-action@v0.4.0
+
+          - name: Build
+            run: |
+                npx eslint --max-warnings 0 .
+                npm run build
+
+          - name: Get Latest WP Branch
+            if: ${{ matrix.wp-version }}
+            run: |
+                echo "branch=$(curl -L -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/WordPress/WordPress/branches\?per_page\=100 | jq '.[].name' | awk '/-branch/' | sort -V | tail -n1 | tr -d '"')" >> $GITHUB_ENV
+          - name: Maybe remove .wp-env.json
+            if: ${{ matrix.wp-version }}
+            run: rm .wp-env.json
+          - name: Maybe change WP version
+            uses: jsdaniell/create-json@v1.2.1
+            if: ${{ matrix.wp-version }}
+            with:
+                name: '.wp-env.json'
+                json: '{"core": "WordPress/WordPress#${{ env.branch }}", "plugins":["."]}'
+          - name: Start server
+            run: |
+                wp-env start
+                echo "WordPress version: `wp-env run cli core version`"
+          - name: Cypress run
+            uses: cypress-io/github-action@v5
+            with:
+              browser: chrome
+              spec: cypress/e2e/${{ matrix.spec }}.cy.js
+            env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          - uses: actions/upload-artifact@v3
+            if: failure()
+            with:
+                name: cypress-screenshots
+                path: cypress/screenshots
+          - uses: actions/upload-artifact@v3
+            if: failure()
+            with:
+                name: cypress-videos
+                path: cypress/videos
