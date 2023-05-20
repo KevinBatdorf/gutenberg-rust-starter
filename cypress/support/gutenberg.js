@@ -9,9 +9,11 @@ export const closeWelcomeGuide = () => {
 			) {
 				return true;
 			}
-			win.wp.data
-				.dispatch('core/edit-post')
-				.toggleFeature('welcomeGuide');
+			cy.wrap(
+				win.wp.data
+					.dispatch('core/edit-post')
+					.toggleFeature('welcomeGuide'),
+			);
 			return false;
 		});
 		const className = '[aria-label="Welcome to the block editor"]';
