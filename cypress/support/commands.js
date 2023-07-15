@@ -17,8 +17,7 @@ import {
 	visitAdminPage,
 	visitToLoginPage,
 } from './navigate-pages';
-import { installPlugin, uninstallPlugin } from './plugins';
-import { resetDatabase } from './wp-cli';
+import { installPlugin, uninstallPlugin, resetDatabase } from './wp-cli';
 
 // Port more commands from WP here:
 // https://github.com/WordPress/gutenberg/tree/trunk/packages/e2e-test-utils/src
