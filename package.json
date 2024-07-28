@@ -7,15 +7,10 @@
 	"main": "build/index.js",
 	"scripts": {
 		"build": "wp-scripts build",
-		"format": "wp-scripts format",
-		"lint:css": "wp-scripts lint-style",
-		"lint:js": "wp-scripts lint-js",
-		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start",
-		"start:hot": "wp-scripts start --hot",
-		"eject": "node scripts/eject.mjs",
-		"rename": "node scripts/rename.mjs"
+		"rename": "node scripts/rename.mjs",
+        "lint": "biome lint --error-on-warnings",
+        "format": "bunx @biomejs/biome format --write ."
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.8.3",

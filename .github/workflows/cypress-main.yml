@@ -71,7 +71,7 @@ jobs:
 
           - name: Build
             run: |
-                npx eslint --max-warnings 0 .
+                npm run lint
                 npm run build
 
           - name: Get Latest WP Branch

@@ -11,14 +11,12 @@ export const visitAdminPage = (adminPath = "", query = "") => {
 };
 
 export const visitPageEditor = (query, skipWelcomeGuide = true) => {
-	query = addQueryArgs("", {
+	const queryNew = addQueryArgs("", {
 		post_type: "page",
 		...query,
 	}).slice(1);
 
-	cy.visitAdminPage("post-new.php", query);
+	cy.visitAdminPage("post-new.php", queryNew);
 
-	if (skipWelcomeGuide) {
-		cy.closeWelcomeGuide();
-	}
+	if (skipWelcomeGuide) cy.closeWelcomeGuide();
 };

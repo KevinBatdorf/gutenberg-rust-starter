@@ -1,7 +1,7 @@
 export const installPlugin = (slug) => {
 	cy.visitAdminPage(
 		"plugin-install.php",
-		"s=" + encodeURIComponent(slug) + "&tab=search&type=term",
+		`s=${encodeURIComponent(slug)}&tab=search&type=term`,
 	);
 	cy.get(`.plugin-card-${slug}`).then((card) => {
 		const activeButton =

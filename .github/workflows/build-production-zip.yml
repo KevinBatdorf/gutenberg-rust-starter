@@ -30,24 +30,19 @@ jobs:
         env:
           CI: true
 
-      - name: Read .distignore
-        id: read_distignore
+      - name: Prepare artifact
         run: |
-          content=$(cat .distignore | sed 's/^/!/')
-          echo "patterns<<EOF" >> $GITHUB_OUTPUT
-          echo "$content" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-        shell: bash
+          mkdir artifact
+          rsync -av --exclude-from=.distignore . artifact/
 
       - name: Package
         uses: actions/upload-artifact@v4
         with:
           name: rust-starter
-          retention-days: 5
+          path: artifact
+          retention-days: 3
           if-no-files-found: error
-          path: |
-            ${{ github.workspace }}
-            ${{ steps.read_distignore.outputs.patterns }}
+          compression-level: 0
 
       - name: Update README
         if: github.ref == 'refs/heads/main'
