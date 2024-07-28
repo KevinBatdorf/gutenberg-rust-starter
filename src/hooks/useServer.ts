@@ -1,5 +1,5 @@
-import { useEffect, useState } from '@wordpress/element';
-import init, { get_text } from '../../pkg/index.js';
+import { useEffect, useState } from "@wordpress/element";
+import init, { get_text } from "../../pkg/index.js";
 
 interface Server {
 	get_text: () => string;

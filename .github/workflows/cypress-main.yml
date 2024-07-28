@@ -15,7 +15,7 @@ jobs:
         spec: ${{ steps.list_files.outputs.spec }}
     steps:
         - name: Checkout code
-          uses: actions/checkout@v3
+          uses: actions/checkout@v4
         - name: List Files
           id: list_files
           run: |
@@ -28,9 +28,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: Checkout code
-          uses: actions/checkout@v3
+          uses: actions/checkout@v4
         - name: Cache node modules
-          uses: actions/cache@v3
+          uses: actions/cache@v4
           id: cache-node-modules
           with:
               path: node_modules
@@ -53,11 +53,11 @@ jobs:
               spec: ${{ fromJson(needs.generate_file_list.outputs.spec) }}
       steps:
           - name: Clone repo
-            uses: actions/checkout@v3
+            uses: actions/checkout@v4
           - name: Set up node
-            uses: actions/setup-node@v3
+            uses: actions/setup-node@v4
           - name: Node modules cache
-            uses: actions/cache@v3
+            uses: actions/cache@v4
             id: cache-node-modules
             with:
                 path: node_modules
@@ -98,12 +98,12 @@ jobs:
               spec: cypress/e2e/${{ matrix.spec }}.cy.js
             env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: failure()
             with:
                 name: cypress-screenshots
                 path: cypress/screenshots
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: failure()
             with:
                 name: cypress-videos

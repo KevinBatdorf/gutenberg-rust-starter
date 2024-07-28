@@ -1,13 +1,13 @@
-import fg from 'fast-glob';
-import fs from 'fs';
-import replace from 'replace-in-file';
-import { __rootDir } from './utils.mjs';
+import fg from "fast-glob";
+import fs from "fs";
+import replace from "replace-in-file";
+import { __rootDir } from "./utils.mjs";
 
 const textDomain = process.argv[2];
 const label = process.argv[3] ? process.argv[3] : textDomain;
 if (!textDomain) {
-	console.error('No name provided');
-	console.error('Usage: npm run replace <text-domain> <label>');
+	console.error("No name provided");
+	console.error("Usage: npm run replace <text-domain> <label>");
 	process.exit(1);
 }
 console.log(`Renaming to: ${textDomain} (${label})`);
@@ -18,7 +18,7 @@ try {
 		`${__rootDir}/${textDomain}.php`,
 	);
 } catch (e) {
-	console.warn('Warning:', e.message);
+	console.warn("Warning:", e.message);
 }
 
 const ignore = [
@@ -36,5 +36,5 @@ files.forEach((item) => {
 	replace.sync({ from: /Rust Starter/g, to: label, ...options });
 });
 
-console.log('Finished.');
+console.log("Finished.");
 process.exit(0);
