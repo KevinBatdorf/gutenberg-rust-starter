@@ -11,3 +11,5 @@ This is a minimum block plugin template to rapidly get started building WP block
 -   Run `npm run rename <text-domain> <label>` to rename from rust-starter.
 -   Run `npm run start` to start the dev server
 -   Run `cypress open` to run interactive tests
+
+[Latest Build](https://github.com/KevinBatdorf/gutenberg-rust-starter/actions/runs/10132998366)
