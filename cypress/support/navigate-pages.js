@@ -1,24 +1,22 @@
-import { addQueryArgs } from '@wordpress/url';
+import { addQueryArgs } from "@wordpress/url";
 
-export const visitToLoginPage = (query = '') => {
-	const question = query.startsWith('?') ? '' : '?';
+export const visitToLoginPage = (query = "") => {
+	const question = query.startsWith("?") ? "" : "?";
 	cy.visit(`wp-login.php${question}${query}`);
 };
 
-export const visitAdminPage = (adminPath = '', query = '') => {
-	const question = query.startsWith('?') ? '' : '?';
+export const visitAdminPage = (adminPath = "", query = "") => {
+	const question = query.startsWith("?") ? "" : "?";
 	cy.visit(`wp-admin/${adminPath}${question}${query}`);
 };
 
 export const visitPageEditor = (query, skipWelcomeGuide = true) => {
-	query = addQueryArgs('', {
-		post_type: 'page',
+	const queryNew = addQueryArgs("", {
+		post_type: "page",
 		...query,
 	}).slice(1);
 
-	cy.visitAdminPage('post-new.php', query);
+	cy.visitAdminPage("post-new.php", queryNew);
 
-	if (skipWelcomeGuide) {
-		cy.closeWelcomeGuide();
-	}
+	if (skipWelcomeGuide) cy.closeWelcomeGuide();
 };

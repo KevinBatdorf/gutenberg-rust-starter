@@ -1,10 +1,10 @@
-import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, BaseControl, Button } from '@wordpress/components';
-import { useCallback, useEffect } from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
-import type { Attributes } from '..';
-import { useServer } from '../hooks/useServer';
-import './editor.css';
+import { InspectorControls } from "@wordpress/block-editor";
+import { BaseControl, Button, PanelBody } from "@wordpress/components";
+import { useCallback, useEffect } from "@wordpress/element";
+import { __ } from "@wordpress/i18n";
+import type { Attributes } from "..";
+import { useServer } from "../hooks/useServer";
+import "./editor.css";
 
 interface ControlProps {
 	attributes: Attributes;
@@ -20,24 +20,24 @@ export const Controls = ({ attributes, setAttributes }: ControlProps) => {
 	}, [server, setAttributes]);
 
 	useEffect(() => {
-		if (attributes.text === 'Loading...') {
+		if (attributes.text === "Loading...") {
 			setQuote();
 		}
 	}, [server, setQuote, attributes.text]);
 
 	return (
 		<InspectorControls>
-			<PanelBody title={__('Settings', 'rust-starter')}>
+			<PanelBody title={__("Settings", "rust-starter")}>
 				<BaseControl id="get-text">
 					{/* To use TW just wrap the class with your namespace as
                     defined in tailwind.config.js file, but with -editor appended */}
 					<div className="rust-starter-editor">
 						<div className="p-4 bg-gray-200 mb-4">
-							This area is styled with Tailwind CSS. The button
-							below will use Rust to process the request.
+							This area is styled with Tailwind CSS. The button below will use
+							Rust to handle the text.
 						</div>
-						<Button isPrimary onClick={setQuote}>
-							{__('Get new text', 'rust-starter')}
+						<Button variant="primary" onClick={setQuote}>
+							{__("Get new text", "rust-starter")}
 						</Button>
 					</div>
 				</BaseControl>

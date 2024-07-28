@@ -1,6 +1,6 @@
-import fs from 'fs';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import fs from "node:fs";
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
 export const __filename = fileURLToPath(import.meta.url);
 export const __dirname = dirname(__filename);
@@ -10,7 +10,7 @@ export const deleteFile = (filePath) => {
 };
 export const loadFileData = (filePath) => {
 	if (fs.existsSync(filePath)) {
-		return fs.readFileSync(filePath, { encoding: 'utf8' });
+		return fs.readFileSync(filePath, { encoding: "utf8" });
 	}
-	return '';
+	return "";
 };

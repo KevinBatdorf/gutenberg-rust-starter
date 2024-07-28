@@ -8,14 +8,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Install wasm-pack
-              uses: jetli/wasm-pack-action@v0.4.0
+              uses: qmaru/wasm-pack-action@v0.5.0
             - name: npm install and build
               run: |
                   npm ci
-                  npx eslint --max-warnings 0 .
+                  npm run lint
                   npm run build
               env:
                   CI: true

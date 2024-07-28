@@ -1,5 +1,5 @@
-import type { Attributes } from '..';
-import './style.css';
+import type { Attributes } from "..";
+import "./style.css";
 
 export const TheBlock = ({ text }: Attributes) => {
 	return (

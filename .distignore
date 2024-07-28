@@ -1,8 +1,9 @@
-/.wordpress-org
 /.git
 /.github
+/.wordpress-org
+/.vscode
+/cypress
 /node_modules
-/assets
 /scripts
 /package-lock.json
 /target

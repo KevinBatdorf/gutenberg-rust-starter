@@ -1,4 +1,4 @@
-export const resetDatabase = () => cy.exec('wp-env clean all');
+export const resetDatabase = () => cy.exec("wp-env clean all");
 export const installPlugin = (slug) =>
 	cy.exec(`wp-env run cli wp plugin install ${slug} --activate`, {
 		failOnNonZeroExit: false,

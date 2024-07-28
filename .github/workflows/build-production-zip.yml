@@ -1,40 +1,59 @@
-name: Build production zip file
-on: push
+name: Build and Package
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *"
+
+permissions:
+  contents: write
+  actions: read
+
 jobs:
-    build:
-        name: Build zip file
-        concurrency:
-            group: production - ${{ github.event.pull_request.number || github.ref }}
-            cancel-in-progress: true
-        runs-on: ubuntu-latest
-        steps:
-            - name: Check out code
-              uses: actions/checkout@v3
+  build:
+    name: Build and Package
+    concurrency:
+      group: production-${{ github.ref }}
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
 
-            - name: Install wasm-pack
-              uses: jetli/wasm-pack-action@v0.4.0
-            - name: npm install and build
-              run: |
-                  npm ci
-                  npm run build
-              env:
-                  CI: true
+      - name: Install wasm-pack
+        uses: qmaru/wasm-pack-action@v0.5.0
 
-            - name: Package
-              uses: actions/upload-artifact@v3
-              with:
-                  name: rust-starter
-                  retention-days: 5
-                  path: |
-                      ${{ github.workspace }}/
-                      !${{ github.workspace }}/node_modules/
-                      !${{ github.workspace }}/cypress/
-                      !${{ github.workspace }}/target/
-                      !${{ github.workspace }}/scripts/
-                      !${{ github.workspace }}/.git/
-                      !${{ github.workspace }}/.github/
-                      !${{ github.workspace }}/.wordpress-org/
-                      !${{ github.workspace }}/assets/
-                      !${{ github.workspace }}/scripts/
-                      !${{ github.workspace }}/package-lock.json
-                      !${{ github.workspace }}/Cargo.lock
+      - name: npm install and build
+        run: |
+          npm ci
+          npm run build
+        env:
+          CI: true
+
+      - name: Prepare artifact
+        run: |
+          mkdir artifact
+          rsync -av --exclude-from=.distignore . artifact/
+
+      - name: Package
+        uses: actions/upload-artifact@v4
+        with:
+          name: rust-starter
+          path: artifact
+          retention-days: 3
+          if-no-files-found: error
+          compression-level: 0
+
+      - name: Update README
+        if: github.ref == 'refs/heads/main'
+        run: |
+          artifact_url="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          sed -i '/\[Latest Build\]/d' README.md
+          echo -e "\n[Latest Build]($artifact_url)" >> README.md
+
+      - name: Commit changes
+        if: github.ref == 'refs/heads/main'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update README with latest build link
+          file_pattern: 'README.md'
