@@ -57,7 +57,7 @@ jobs:
                   restore-keys: ${{ runner.os }}-node-modules-
 
             - name: Install wasm-pack
-              uses: jetli/wasm-pack-action@v0.4.0
+              uses: qmaru/wasm-pack-action@v0.5.0
 
             - name: Build
               run: |
