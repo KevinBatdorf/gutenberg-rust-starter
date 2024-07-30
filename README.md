@@ -13,4 +13,5 @@ This is a minimum block plugin template to rapidly get started building WP block
 -   Run `cypress open` to run interactive tests
 
 
-[Latest Build](https://github.com/KevinBatdorf/gutenberg-rust-starter/actions/runs/10138980077)
+
+[Latest Build](https://github.com/KevinBatdorf/gutenberg-rust-starter/actions/runs/10157016717)
