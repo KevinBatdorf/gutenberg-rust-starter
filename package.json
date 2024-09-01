@@ -18,7 +18,7 @@
 		"@types/wordpress__blocks": "^12.5.14",
 		"@wasm-tool/wasm-pack-plugin": "^1.7.0",
 		"@wordpress/block-editor": "^13.4.0",
-		"@wordpress/env": "^10.4.0",
+		"@wordpress/env": "^10.6.0",
 		"@wordpress/scripts": "^28.4.0",
 		"@wordpress/url": "^4.4.0",
 		"autoprefixer": "^10.4.19",
