@@ -1,6 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "kevinbatdorf/rust-starter",
 	"version": "0.1.0",
 	"title": "Rust Starter",
@@ -13,10 +13,12 @@
 		}
 	},
 	"supports": {
-		"html": false
+		"html": false,
+		"interactivity": true
 	},
 	"textdomain": "rust-starter",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css"
+	"style": "file:./style-index.css",
+	"viewScriptModule": "file:./view.js"
 }

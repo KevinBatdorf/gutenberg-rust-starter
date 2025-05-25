@@ -8,3 +8,4 @@
 /package-lock.json
 /target
 /Cargo.lock
+/composer.lock

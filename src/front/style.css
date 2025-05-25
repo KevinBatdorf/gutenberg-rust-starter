@@ -1,8 +1,8 @@
 .rust-starter {
-    --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
+	--tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
 	--tw-ring-offset-width: 0px;
 	--tw-ring-offset-color: transparent;
-	--tw-ring-color: var(--wp-admin-theme-main, #3F57E1);
+	--tw-ring-color: var(--wp-admin-theme-main, #3f57e1);
 	--tw-translate-x: 0;
 	--tw-translate-y: 0;
 	--tw-rotate: 0;

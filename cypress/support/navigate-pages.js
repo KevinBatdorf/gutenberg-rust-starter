@@ -17,6 +17,4 @@ export const visitPageEditor = (query, skipWelcomeGuide = true) => {
 	}).slice(1);
 
 	cy.visitAdminPage("post-new.php", queryNew);
-
-	if (skipWelcomeGuide) cy.closeWelcomeGuide();
 };

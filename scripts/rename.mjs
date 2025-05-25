@@ -1,5 +1,4 @@
 import fs from "node:fs";
-import fg from "fast-glob";
 import replace from "replace-in-file";
 import { __rootDir } from "./utils.mjs";
 

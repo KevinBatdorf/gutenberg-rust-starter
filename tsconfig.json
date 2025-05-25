@@ -1,20 +1,21 @@
 {
-	"compilerOptions": {
-		"target": "esnext",
-		"lib": ["dom", "dom.iterable", "esnext"],
-		"allowJs": true,
-		"skipLibCheck": true,
-		"strict": true,
-		"forceConsistentCasingInFileNames": true,
-		"noEmit": true,
-		"esModuleInterop": true,
-		"module": "esnext",
-		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"isolatedModules": true,
-		"jsx": "preserve",
-		"incremental": true
-	},
+    "compilerOptions": {
+        "target": "es2022",
+        "lib": ["es2022", "dom", "dom.iterable"],
+        "skipLibCheck": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "module": "Preserve",
+        "verbatimModuleSyntax": true,
+        "moduleDetection": "force",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noUncheckedIndexedAccess": true,
+        "noImplicitOverride": true,
+        "jsx": "preserve",
+        "incremental": true,
+        "types": ["cypress", "node"],
+    },
 	"include": ["src/**/*.ts", "src/**/*.tsx"],
 	"exclude": ["node_modules"]
 }

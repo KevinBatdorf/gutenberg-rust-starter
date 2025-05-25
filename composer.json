@@ -1,0 +1,7 @@
+{
+    "name": "kevin/rust-starter",
+    "require": {},
+    "require-dev": {
+        "johnpbloch/wordpress-core": "*"
+    }
+}

@@ -1,7 +1,6 @@
 import { BLOCK_CONTAINER } from "../constants";
 import {
 	addBlock,
-	closeWelcomeGuide,
 	openBlockInserter,
 	closeBlockInserter,
 	openBlockSettingsSideBar,
@@ -10,13 +9,13 @@ import {
 	setPostContent,
 	wpDataSelect,
 	previewCurrentPage,
-	disableEditorIframe,
 } from "./gutenberg";
 import { login, logout } from "./login-logout";
 import {
 	visitPageEditor,
 	visitAdminPage,
 	visitToLoginPage,
+	withWpEditor,
 } from "./navigate-pages";
 import { installPlugin, uninstallPlugin, resetDatabase } from "./wp-cli";
 
@@ -39,13 +38,13 @@ Cypress.Commands.add("loginUser", (username, password) =>
 Cypress.Commands.add("logoutUser", () => logout());
 
 // Gutenberg
-Cypress.Commands.add("closeWelcomeGuide", () => closeWelcomeGuide());
 Cypress.Commands.add("saveDraft", () => saveDraft());
 Cypress.Commands.add("openBlockInserter", () => openBlockInserter());
 Cypress.Commands.add("closeBlockInserter", () => closeBlockInserter());
 Cypress.Commands.add("openBlockSettingsSideBar", () =>
 	openBlockSettingsSideBar(),
 );
+Cypress.Commands.add("withWpEditor", (cb) => withWpEditor(cb));
 Cypress.Commands.add("openSideBarPanel", (label) => openSideBarPanel(label));
 Cypress.Commands.add("addBlock", (slug) => addBlock(slug));
 Cypress.Commands.add("setPostContent", (content) => setPostContent(content));
@@ -71,6 +70,3 @@ Cypress.Commands.add("resetDatabase", () => resetDatabase());
 // Manage plugins
 Cypress.Commands.add("installPlugin", (slug) => installPlugin(slug));
 Cypress.Commands.add("uninstallPlugin", (slug) => uninstallPlugin(slug));
-
-// Disable Gutenberg iFrame
-Cypress.Commands.add("disableEditorIframe", () => disableEditorIframe());

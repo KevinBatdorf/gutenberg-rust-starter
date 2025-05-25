@@ -1,6 +1,7 @@
 node_modules
 build
 /target
+!.vscode
 
 cypress/screenshots/**/*
 !cypress/screenshots/**/.gitkeep
@@ -8,3 +9,5 @@ cypress/videos/**/*
 !cypress/videos/**/.gitkeep
 cypress/downloads/**/*
 cypress/downloads/**/.gitkeep
+
+/vendor/

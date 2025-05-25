@@ -24,14 +24,14 @@ registerBlockType<Attributes>("kevinbatdorf/rust-starter", {
 	edit: ({ attributes, setAttributes }) => (
 		<>
 			<Controls attributes={attributes} setAttributes={setAttributes} />
-			<div {...blockProps()}>
+			<div {...blockProps({ className: "rust-starter" })}>
 				<TheBlock {...attributes} />
 			</div>
 		</>
 	),
 	save: ({ attributes }) => {
 		return (
-			<div {...blockProps.save()}>
+			<div {...blockProps.save({ className: "rust-starter" })}>
 				<TheBlock {...attributes} />
 			</div>
 		);
