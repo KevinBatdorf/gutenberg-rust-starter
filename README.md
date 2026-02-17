@@ -575,4 +575,5 @@ This is a minimum block plugin template to rapidly get started building WP block
 
 
 
-[Latest Build](https://github.com/KevinBatdorf/gutenberg-rust-starter/actions/runs/22052436462)
+
+[Latest Build](https://github.com/KevinBatdorf/gutenberg-rust-starter/actions/runs/22088196954)
