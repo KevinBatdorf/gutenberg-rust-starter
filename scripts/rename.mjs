@@ -10,6 +10,10 @@ if (!textDomain) {
 	console.error("Usage: npm run replace <text-domain> <label>");
 	process.exit(1);
 }
+if (!/^[a-zA-Z0-9_-]+$/.test(textDomain)) {
+	console.error("Invalid text domain: only alphanumeric characters, hyphens, and underscores are allowed");
+	process.exit(1);
+}
 console.log(`Renaming to: ${textDomain} (${label})`);
 
 try {
